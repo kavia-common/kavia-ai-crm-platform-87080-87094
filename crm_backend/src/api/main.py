@@ -4,11 +4,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.core.config import get_settings
 from src.core.database import engine, Base
 
+# Routers
+from src.api.routers.accounts import router as accounts_router  # noqa: E402
+from src.api.routers.contacts import router as contacts_router  # noqa: E402
+from src.api.routers.deals import router as deals_router  # noqa: E402
+from src.api.routers.activities import router as activities_router  # noqa: E402
+from src.api.routers.pipeline import router as pipeline_router  # noqa: E402
+from src.api.routers.ai import router as ai_router  # noqa: E402
+
 # Initialize FastAPI with metadata and tags
 app = FastAPI(
     title="Kavia AI CRM Backend",
-    description="Backend APIs for accounts, contacts, deals, activities, and pipeline. Prepared for AI endpoints.",
-    version="0.1.0",
+    description="Backend APIs for accounts, contacts, deals, activities, pipeline stages, and AI analytics.",
+    version="0.2.0",
     openapi_tags=[
         {"name": "health", "description": "Health and status endpoints"},
         {"name": "accounts", "description": "Manage accounts"},
@@ -16,6 +24,7 @@ app = FastAPI(
         {"name": "deals", "description": "Manage deals and pipeline"},
         {"name": "activities", "description": "Activity logs"},
         {"name": "pipeline", "description": "Pipeline stages"},
+        {"name": "ai", "description": "AI analytics and insights"},
     ],
 )
 
@@ -40,3 +49,12 @@ if settings.app_env == "development":
 def health_check():
     """Returns a simple health status message for availability checks."""
     return {"message": "Healthy"}
+
+
+# Include routers
+app.include_router(accounts_router)
+app.include_router(contacts_router)
+app.include_router(deals_router)
+app.include_router(activities_router)
+app.include_router(pipeline_router)
+app.include_router(ai_router)
