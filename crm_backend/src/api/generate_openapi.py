@@ -1,7 +1,8 @@
 import json
 import os
 
-from src.api.main import app
+# Ensure app import triggers model registration and metadata setup
+from src.api.main import app  # noqa: E402
 
 # Get the OpenAPI schema
 openapi_schema = app.openapi()
