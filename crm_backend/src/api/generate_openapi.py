@@ -3,6 +3,10 @@ import os
 
 from src.api.main import app
 
+"""
+Generate the OpenAPI schema into interfaces/openapi.json for external consumption.
+"""
+
 # Get the OpenAPI schema
 openapi_schema = app.openapi()
 
