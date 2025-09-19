@@ -1,0 +1,4 @@
+{
+    "command": "pytest",
+    "working_directory": "/home/kavia/workspace/code-generation/kavia-ai-crm-platform-87080-87094/crm_backend"
+}
